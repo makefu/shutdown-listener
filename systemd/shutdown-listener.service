@@ -1,0 +1,9 @@
+[Unit]
+Description=port 2342 shutdown listener
+
+[Service]
+ExecStart=/opt/shutdown-listener/listen.py /opt/shutdown-listener/listener-scripts
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
