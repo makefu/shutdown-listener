@@ -29,6 +29,7 @@ def run_shelldir(d):
 
 def main():
     d = docopt(__doc__)["SHELLDIR"]
+    log.debug(d)
     listen_socket(d)
 
 def listen_socket(d):
@@ -42,13 +43,13 @@ def listen_socket(d):
             if typ == 0x0a:
                 log.debug("got hauptschalter")
                 action = pkg[1]
-                if action == 2:
-                    log.debug("pre-shutdown")
+                if action == 0:
+                    print("shutdown successful")
                 elif action == 1:
                     log.debug("shutdown")
                     run_shelldir(d)
-                elif action == 0:
-                    print("shutdown successful")
+                elif action == 2:
+                    log.debug("pre-shutdown")
         except Exception as e:
             log.error(e)
             pass
